@@ -15,15 +15,13 @@ podTemplate(label: 'ror', containers: [
             stage('Install Ruby'){
                 sh 'rvm install 2.5.7'
                 sh 'unlink /usr/local/rvm/rubies/default && ln -s /usr/local/rvm/rubies/ruby-2.5.7 /usr/local/rvm/rubies/default'
-//                 sh 'gem install bundler:2.1.4'
-                sh 'bundle update --bundler'
                 sh 'ruby -v'
             }
             stage('SCM') {
                 checkout scm
             }
             stage('Build RoR') {
-
+                 sh 'bundle update --bundler'
                  sh 'bundle install'
                  sh 'rake assets:precompile'
             }
