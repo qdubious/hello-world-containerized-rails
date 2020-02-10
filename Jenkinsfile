@@ -13,9 +13,9 @@ podTemplate(label: 'ror', containers: [
                 sh 'apt-get install -y libpq-dev nodejs tzdata'
             }
             stage('Install Ruby'){
-                sh 'gem install bundler:2.1.4'
                 sh 'rvm install 2.5.7'
                 sh 'unlink /usr/local/rvm/rubies/default && ln -s /usr/local/rvm/rubies/ruby-2.5.7 /usr/local/rvm/rubies/default'
+                sh 'gem install bundler:2.1.4'
                 sh 'ruby -v'
             }
             stage('SCM') {
