@@ -20,9 +20,7 @@ podTemplate(label: 'ror', containers: [
                 checkout scm
             }
             stage('Build RoR') {
-                sh 'gem update --system'
                 sh 'gem install bundler:2.1.4'
-                sh 'bundle update --bundler'
                 sh 'bundle install'
                 sh 'rake assets:precompile'
             }
@@ -30,7 +28,7 @@ podTemplate(label: 'ror', containers: [
 
         container('dockerstuff'){
             stage('Build Container'){
-                sh 'docker build -t idw-pipeline-demo .'
+                sh 'docker build -t hello-world-containerized-rails .'
             }
         }
     }
