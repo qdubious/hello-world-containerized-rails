@@ -13,6 +13,7 @@ podTemplate(label: 'ror', containers: [
                 sh 'apt-get install -y libpq-dev nodejs tzdata'
             }
             stage('Install Ruby'){
+                sh 'gem install bundler:2.1.4'
                 sh 'rvm use default'
                 sh 'rvm install 2.5.7'
             }
@@ -20,8 +21,7 @@ podTemplate(label: 'ror', containers: [
                 checkout scm
             }
             stage('Build RoR') {
-                sh 'gem install bundler:2.1.4'
-                sh 'rvm use 2.5.7'
+                sh 'ruby -v'
                 sh 'bundle install'
                 sh 'rake assets:precompile'
             }
