@@ -22,15 +22,15 @@ podTemplate(label: 'ror', containers: [
             }
             stage('Build RoR') {
                 sh 'ruby -v'
-                sh 'bundle install'
-                sh 'rake assets:precompile'
+//                 sh 'bundle install'
+//                 sh 'rake assets:precompile'
             }
         }
 
-        container('dockerstuff'){
-            stage('Build Container'){
-                sh 'docker build -t hello-world-containerized-rails .'
-            }
-        }
+//         container('dockerstuff'){
+//             stage('Build Container'){
+//                 sh 'docker build -t hello-world-containerized-rails .'
+//             }
+//         }
     }
 }
