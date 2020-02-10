@@ -14,7 +14,7 @@ podTemplate(label: 'ror', containers: [
             }
             stage('Install Ruby'){
                 sh 'rvm use default'
-                sh 'rvm install 2.5'
+                sh 'rvm install 2.5.7'
             }
             stage('SCM') {
                 checkout scm
