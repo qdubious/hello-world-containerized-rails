@@ -12,6 +12,9 @@ podTemplate(label: 'ror', containers: [
                 sh 'apt-get remove libpq5'
                 sh 'apt-get install -y libpq-dev nodejs tzdata'
             }
+            stage('Install NPM Packages') {
+                sh 'npm install yarn'
+            }
             stage('Install Ruby'){
                 sh 'rvm install 2.5.7'
                 sh 'unlink /usr/local/rvm/rubies/default && ln -s /usr/local/rvm/rubies/ruby-2.5.7 /usr/local/rvm/rubies/default'
