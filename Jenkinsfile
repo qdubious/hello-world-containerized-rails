@@ -21,9 +21,7 @@ podTemplate(label: 'ror', containers: [
                 checkout scm
             }
             stage('Build RoR') {
-                sh 'ruby -v'
                 sh 'rvm use 2.5.7'
-                sh 'rvm get stable --auto-dotfiles'
                 sh 'rvm use default'
 //                 sh 'bundle install'
 //                 sh 'rake assets:precompile'
