@@ -20,6 +20,8 @@ podTemplate(label: 'ror', containers: [
                 checkout scm
             }
             stage('Build RoR') {
+                sh 'gem list bundler'
+                sh 'gem update --system'
                 sh 'bundle update --bundler'
                 sh 'bundle install'
                 sh 'rake assets:precompile'
