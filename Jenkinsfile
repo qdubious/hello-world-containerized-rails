@@ -14,24 +14,22 @@ podTemplate(label: 'ror', containers: [
             }
             stage('Install Ruby'){
                 sh 'gem install bundler:2.1.4'
-                sh 'rvm use default'
                 sh 'rvm install 2.5.7'
+                sh 'unlink /usr/local/rvm/rubies/default && ln -s /usr/local/rvm/rubies/ruby-2.5.7 /usr/local/rvm/rubies/default'
+                sh 'ruby -v'
             }
             stage('SCM') {
                 checkout scm
             }
             stage('Build RoR') {
-                sh 'rvm use 2.5.7'
-                sh 'rvm use default'
-//                 sh 'bundle install'
-//                 sh 'rake assets:precompile'
+                 sh 'bundle install'
+                 sh 'rake assets:precompile'
             }
         }
-
-//         container('dockerstuff'){
-//             stage('Build Container'){
-//                 sh 'docker build -t hello-world-containerized-rails .'
-//             }
-//         }
+        container('dockerstuff'){
+            stage('Build Container'){
+                sh 'docker build -t hello-world-containerized-rails .'
+            }
+        }
     }
 }
