@@ -21,7 +21,7 @@ podTemplate(label: 'ror', containers: [
             }
             stage('Build RoR') {
                 sh 'gem install bundler:2.1.4'
-                sh 'svn install 2.5.7'
+                sh 'rvm install 2.5.7'
                 sh 'bundle install'
                 sh 'rake assets:precompile'
             }
