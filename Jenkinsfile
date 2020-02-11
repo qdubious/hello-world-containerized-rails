@@ -7,12 +7,14 @@ podTemplate(label: 'ror', containers: [
   ]) {
     node('ror') {
         container('rvm') {
-            stage('Install System Dependencies'){
+            stage('Install NPM') {
+                sh 'curl -sL https://deb.nodesource.com/setup_10.x | bash -'
                 sh 'apt-get update -y'
                 sh 'apt-get remove libpq5'
-                sh 'apt-get install -y libpq-dev nodejs tzdata'
+                sh 'apt-get install -y nodejs libpq-dev tzdata'
+                sh 'npm install -g yarn'
             }
-            stage('Install Ruby'){
+            stage('Install Ruby') {
                 sh 'rvm install 2.5.7'
                 sh 'unlink /usr/local/rvm/rubies/default && ln -s /usr/local/rvm/rubies/ruby-2.5.7 /usr/local/rvm/rubies/default'
                 sh 'ruby -v'
