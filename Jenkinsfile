@@ -7,6 +7,9 @@ podTemplate(label: 'ror', containers: [
   ]) {
     node('ror') {
         container('rvm') {
+            stage('SCM') {
+                checkout scm
+            }
             stage('Install NPM') {
                 sh 'curl -sL https://deb.nodesource.com/setup_10.x | bash -'
                 sh 'apt-get update -y'
@@ -19,9 +22,6 @@ podTemplate(label: 'ror', containers: [
                 sh 'rvm install 2.5.7'
                 sh 'unlink /usr/local/rvm/rubies/default && ln -s /usr/local/rvm/rubies/ruby-2.5.7 /usr/local/rvm/rubies/default'
                 sh 'ruby -v'
-            }
-            stage('SCM') {
-                checkout scm
             }
             stage('Build RoR') {
                  sh 'gem update --system && bundle update --bundler'
